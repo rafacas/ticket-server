@@ -28,6 +28,7 @@ sub get_dbh {
     if ( ! ($self->dbh and ref $self->dbh and $self->dbh->ping()) ){
         # Connect to the database if dbh has not been created yet or 
         # is not active
+        # TODO: tries?
         my $dbh = DBI->connect($self->dsn, $self->user, $self->pwd)
               || Carp::croak("Could not connect to database: $DBI::errstr");
         $self->_set_dbh($dbh);
